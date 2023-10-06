@@ -1959,3 +1959,39 @@ LEFT JOIN
     stores st ON o.store_id = st.store_id
 Group by year(order_date), store_name
 
+Classement des vendeurs par magasin et par an :
+
+SELECT year(order_date) as Year, sto.store_name, st.last_name, sum(quantity) as quantity
+FROM orders o 
+left join order_items as oi ON o.order_id = oi.order_id
+left join products as pd on oi.product_id = pd.product_id
+left join categories as cat on pd.category_id = cat.category_id
+LEFT JOIN staffs AS st ON st.staff_id = o.staff_id
+left join stores AS sto on sto.store_id = o.store_id
+group by year, store_name, last_name
+order by year, quantity desc
+
+"2016"	"Baldwin Bikes"	"Daniel"	"936"
+"2016"	"Baldwin Bikes"	"Boyer"	"875"
+"2016"	"Santa Cruz Bikes"	"Serrano"	"325"
+"2016"	"Santa Cruz Bikes"	"Copeland"	"256"
+"2016"	"Rowlett Bikes"	"Vargas"	"139"
+"2016"	"Rowlett Bikes"	"Terrell"	"132"
+"2017"	"Baldwin Bikes"	"Boyer"	"1136"
+"2017"	"Baldwin Bikes"	"Daniel"	"1023"
+"2017"	"Santa Cruz Bikes"	"Serrano"	"303"
+"2017"	"Santa Cruz Bikes"	"Copeland"	"274"
+"2017"	"Rowlett Bikes"	"Terrell"	"199"
+"2017"	"Rowlett Bikes"	"Vargas"	"164"
+"2018"	"Baldwin Bikes"	"Boyer"	"408"
+"2018"	"Baldwin Bikes"	"Daniel"	"401"
+"2018"	"Santa Cruz Bikes"	"Serrano"	"203"
+"2018"	"Santa Cruz Bikes"	"Copeland"	"155"
+"2018"	"Rowlett Bikes"	"Vargas"	"109"
+"2018"	"Rowlett Bikes"	"Terrell"	"40"
+
+
+
+
+
+
